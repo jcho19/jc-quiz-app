@@ -9,7 +9,7 @@ import App from './App';
 import Play from './routes/play';
 import Leaderboard from './routes/leaderboard';
 import Login from './routes/login';
-import Register from './routes/register';
+import Signup from './routes/signup';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -20,7 +20,7 @@ root.render(
       <Route path='play' element={<Play />} />
       <Route path='leaderboard' element={<Leaderboard />} />
       <Route path='login' element={<Login />} />
-      <Route path='register' element={<Register />} />
+      <Route path='signup' element={<Signup />} />
     </Routes>
   </BrowserRouter>
 );

@@ -68,8 +68,8 @@ const App = () => {
         <Link style={{textDecoration: 'none'}} to='/login'>
         <Button>Login</Button>
         </Link>
-        <Link style={{textDecoration: 'none'}} to='/register'>
-        <Button>No account? Register </Button>
+        <Link style={{textDecoration: 'none'}} to='/signup'>
+        <Button>No account? Sign up</Button>
         </Link>        
       
       
