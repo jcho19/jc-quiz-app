@@ -1,24 +1,82 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Box, Typography, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-function App() {
+const theme = createTheme({
+  typography : {
+    fontFamily: 'monospace',     
+    h1: {
+      fontSize: 48,
+      color: '#0B0B45',
+      '@media (max-width: 900px)' : {
+        fontSize: 38
+
+      },
+      '@media (max-width: 700px)' : {
+        fontSize: 22
+
+      },        
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#0B0B45',
+          color: '#63b5cf',
+          marginTop: 35,
+          width: 391,
+          fontSize: 27,
+          '@media (max-width: 900px)' : {
+            fontSize: 21,
+            width: 310
+    
+          },
+          '@media (max-width: 700px)' : {
+            fontSize: 12,
+            width: 179
+    
+          },
+          
+        }
+      }
+    }
+  }
+});
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        mt: 7,
+       
+      }}>
+        <Typography variant='h1'
+       >
+          Japanese Culture Quiz
+        </Typography>
+        <Link style={{textDecoration: 'none'}} to='/play'>
+        <Button>Play</Button>
+        </Link> 
+        <Link style={{textDecoration: 'none'}} to='/leaderboard'>
+        <Button>Leaderboard</Button>
+        </Link>        
+        <Link style={{textDecoration: 'none'}} to='/login'>
+        <Button>Login</Button>
+        </Link>
+        <Link style={{textDecoration: 'none'}} to='/register'>
+        <Button>No account? Register </Button>
+        </Link>        
+      
+      
+      </Box>
+    </ThemeProvider>
+   
+    
   );
 }
 
