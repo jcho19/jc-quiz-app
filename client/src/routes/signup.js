@@ -84,10 +84,10 @@ const Signup = () => {
 
     } catch(err) {
       console.log(err);
-      if (response.status === 500) {
+      if (err.response.status === 500) {
         alert('Internal server error');
       }
-      else if (response.status === 409){
+      else if (err.response.status === 409){
         setUserTaken(true);
       }
       else {
