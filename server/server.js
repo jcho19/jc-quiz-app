@@ -20,8 +20,11 @@ dbConnect()
 app.use(express.json());
 app.use('/signup', require('./routes/signup'));
 
-mongoose.connection.once('open', app.listen(port, () => {
-  console.log(`Server listening on port ${port}`)
-}) )
+mongoose.connection.once('open', () => {
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`)
+  });
+
+});
 
 
