@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const mongoose = require('mongoose');
-const port = 3000
+const port = 3001
+const allowList = ['http://localhost:3000'];
 require('dotenv').config();
 
 const dbConnect = async () => {
@@ -17,7 +19,20 @@ const dbConnect = async () => {
 
 dbConnect()
 
+const corsOptionsDelegate = (req, callback) => {
+  let corsOptions;
+  if (allowList.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true } 
+  } else {
+    corsOptions = { origin: false } 
+  }
+  callback(null, corsOptions) 
+}
+
+app.use(cors(corsOptionsDelegate));
+
 app.use(express.json());
+
 app.use('/signup', require('./routes/signup'));
 
 mongoose.connection.once('open', () => {
