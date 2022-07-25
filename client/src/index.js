@@ -10,11 +10,13 @@ import Play from './routes/play';
 import Leaderboard from './routes/leaderboard';
 import Login from './routes/login';
 import Signup from './routes/signup';
+import { TokenProvider } from './context/tokencontext';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+    <TokenProvider>
     <Routes>
       <Route path='/' element={<App />} />
       <Route path='play' element={<Play />} />
@@ -22,6 +24,7 @@ root.render(
       <Route path='login' element={<Login />} />
       <Route path='signup' element={<Signup />} />
     </Routes>
+    </TokenProvider>
   </BrowserRouter>
 );
 

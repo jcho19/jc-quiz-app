@@ -1,4 +1,7 @@
-import { useState, useEffect} from 'react';
+import {
+  useState, 
+  useEffect, 
+  useContext } from 'react';
 import {
   Avatar,
   Button,
@@ -12,6 +15,7 @@ import {
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
+import { TokenContext } from '../context/tokencontext';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001';
@@ -56,12 +60,14 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const { setAccessToken } = useContext(TokenContext);
   const handleSubmit = async e => {
     e.preventDefault();
     try {
       const response = await axios.post('/login', { username, password });
       console.log(response);
       setLoggedIn(true);
+      setAccessToken(response.data.accessToken);
   
     } catch (err) {
       console.log(err);
