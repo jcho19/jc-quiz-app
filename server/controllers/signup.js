@@ -11,9 +11,11 @@ const handleSignup = async(req, res) => {
 
     } catch (err) {
         if (err.code === 11000) {
-            res.status(409).json({ 'message': 'Username is already taken.' });
+            return res.status(409).json({ 'message': 'Username is already taken.' });
         }
+        
         res.status(500).json({ 'message': err.message });
+        
     }
 
 }
