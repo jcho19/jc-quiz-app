@@ -16,8 +16,8 @@ const handleLogin = async (req, res) => {
     const refreshToken = jwt.sign({ username }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1d' });
     user.refreshToken = refreshToken;
     await user.save();
-    res.cookie('refreshToken', refreshToken, {httpOnly: true, maxAge: 60000 * 60 * 24, secure: true, sameSite: 'None' })
-    res.status(201).json( { accessToken } )
+    res.cookie('refreshToken', refreshToken, {httpOnly: true, maxAge: 60000 * 60 * 24, secure: true, sameSite: 'None' });
+    res.status(201).json( { accessToken } );
 }
 
 module.exports = { handleLogin };
