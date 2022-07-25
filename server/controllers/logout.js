@@ -1,0 +1,18 @@
+const User = require('../models/user');
+
+const handleLogout = async (req, res) => {
+    const refreshToken = req.cookies.refreshToken
+    if(!refreshToken) {
+        return res.sendStatus(204);
+    }
+    const user = await User.findOne({ refreshToken }).exec();
+    if (user) {
+        user.refreshToken = '';
+        await user.save();
+
+    }
+    res.clearCookie('refreshToken', {httpOnly: true, secure: true, sameSite: 'None' });
+    res.sendStatus(204);
+
+}
+module.exports = { handleLogout };

@@ -37,6 +37,8 @@ app.use('/signup', require('./routes/signup'));
 
 app.use('/login', require('./routes/login'));
 
+app.use('/logout', require('./routes/logout'));
+
 app.use((err, req, res, next) => {
   res.status(500).send(err.message);
 })
