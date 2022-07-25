@@ -35,6 +35,8 @@ app.use(express.json());
 
 app.use('/signup', require('./routes/signup'));
 
+app.use('/login', require('./routes/login'));
+
 mongoose.connection.once('open', () => {
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
