@@ -37,6 +37,10 @@ app.use('/signup', require('./routes/signup'));
 
 app.use('/login', require('./routes/login'));
 
+app.use((err, req, res, next) => {
+  res.status(500).send(err.message);
+})
+
 mongoose.connection.once('open', () => {
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
