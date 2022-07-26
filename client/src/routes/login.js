@@ -64,7 +64,7 @@ const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await axios.post('/login', { username, password });
+      const response = await axios.post('/login', { username, password }, { withCredentials: true });
       console.log(response);
       setLoggedIn(true);
       setAccessToken(response.data.accessToken);
