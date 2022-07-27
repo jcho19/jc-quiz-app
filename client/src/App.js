@@ -1,7 +1,9 @@
-import React from 'react'
+import { useContext } from 'react';
+import { TokenContext } from './context/tokencontext';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Box, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import useAxiosJWT from './hooks/axiosjwt';
 
 const theme = createTheme({
   typography : {
@@ -45,7 +47,18 @@ const theme = createTheme({
   }
 });
 
+
 const App = () => {
+  const { accessToken } = useContext(TokenContext);
+  const axiosJWT = useAxiosJWT();
+  const handleLogout = async e => {
+    try {
+    const response = await axiosJWT.get('/logout');
+    } catch (err) {
+      alert('Logout has failed');
+    }
+
+  }
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{
@@ -64,14 +77,25 @@ const App = () => {
         </Link> 
         <Link style={{textDecoration: 'none'}} to='/leaderboard'>
         <Button>Leaderboard</Button>
-        </Link>        
-        <Link style={{textDecoration: 'none'}} to='/login'>
-        <Button>Login</Button>
         </Link>
-        <Link style={{textDecoration: 'none'}} to='/signup'>
-        <Button>No account? Sign up</Button>
-        </Link>        
-      
+        
+        {accessToken 
+        ? (<>
+            
+            <Button onClick={handleLogout}>Logout</Button>
+            
+          </>
+        )
+        : (<>
+            <Link style={{textDecoration: 'none'}} to='/login'>
+            <Button>Login</Button>
+            </Link>
+            <Link style={{textDecoration: 'none'}} to='/signup'>
+            <Button>No account? Sign up</Button>
+            </Link>  
+          </>
+        )    
+        }
       
       </Box>
     </ThemeProvider>
@@ -81,3 +105,4 @@ const App = () => {
 }
 
 export default App;
+
