@@ -49,11 +49,12 @@ const theme = createTheme({
 
 
 const App = () => {
-  const { accessToken } = useContext(TokenContext);
+  const { accessToken, setAccessToken } = useContext(TokenContext);
   const axiosJWT = useAxiosJWT();
   const handleLogout = async e => {
     try {
-    const response = await axiosJWT.get('/logout');
+      const response = await axiosJWT.get('/logout');
+      setAccessToken('');
     } catch (err) {
       alert('Logout has failed');
     }
