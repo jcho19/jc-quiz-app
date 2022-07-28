@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const port = 3001
 const allowList = ['http://localhost:3000'];
@@ -19,6 +20,14 @@ const dbConnect = async () => {
 
 dbConnect()
 
+app.use((req, res, next) => {
+  if(allowList.includes(req.headers.origin)) {
+    res.header('Access-Control-Allow-Credentials', true);
+  }
+  next();
+
+})
+
 const corsOptionsDelegate = (req, callback) => {
   let corsOptions;
   if (allowList.indexOf(req.header('Origin')) !== -1) {
@@ -32,6 +41,8 @@ const corsOptionsDelegate = (req, callback) => {
 app.use(cors(corsOptionsDelegate));
 
 app.use(express.json());
+
+app.use(cookieParser());
 
 app.use('/signup', require('./routes/signup'));
 
@@ -51,5 +62,8 @@ mongoose.connection.once('open', () => {
   });
 
 });
+
+
+
 
 
