@@ -18,7 +18,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { TokenContext } from '../context/tokencontext';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+const instance = axios.create({ baseURL: 'http://localhost:3001', withCredentials: true });
 
 const theme = createTheme({
   palette: {
@@ -64,7 +64,7 @@ const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await axios.post('/login', { username, password }, { withCredentials: true });
+      const response = await instance.post('/login', { username, password });
       console.log(response);
       setLoggedIn(true);
       setAccessToken(response.data.accessToken);
