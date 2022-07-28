@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+const instance = axios.create({ baseURL: 'http://localhost:3001' });
 
 const theme = createTheme({
     palette: {
@@ -76,7 +76,7 @@ const Signup = () => {
     }
     
     try{
-      const response = await axios.post('/signup', {username, password});
+      const response = await instance.post('/signup', { username, password });
       console.log(response);
       setUserCreated(true);
       setUsername('');
