@@ -22,18 +22,13 @@ const useAxiosJWT = () => {
             async (error) => {
                 if(error.response.status === 403 && !error.config.sent) {
                     error.config.sent = true;
-                    try {
-                        const response = await axiosJWT.get('/refresh');
-                        setAccessToken(response.data.accessToken);
-                        error.config.headers['Authorization'] = `Bearer ${accessToken}`;
-                        return axiosJWT(error.config);
-                    } catch (err) {
-                        setAccessToken('');
-                    }
+                    const response = await axiosJWT.get('/refresh');
+                    setAccessToken(response.data.accessToken);
+                    error.config.headers['Authorization'] = `Bearer ${accessToken}`;
+                    return axiosJWT(error.config);
                 }
-                else {
-                    setAccessToken('');
-                }
+                
+                setAccessToken('');
                 return Promise.reject(error);
 
             });
