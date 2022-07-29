@@ -1,8 +1,9 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { TokenContext } from './context/tokencontext';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Box, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import useAxiosJWT from './hooks/axiosjwt';
 
 const theme = createTheme({
@@ -51,6 +52,26 @@ const theme = createTheme({
 const App = () => {
   const { accessToken, setAccessToken } = useContext(TokenContext);
   const axiosJWT = useAxiosJWT();
+  const instance = axios.create({ baseURL: 'http://localhost:3001', withCredentials: true });
+
+  useEffect(() => {
+    let isMounted = true;
+    const refresh = async () => {
+      try {
+        const response = await instance.get('/refresh');
+        if (isMounted) {
+          setAccessToken(response.data.accessToken);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    refresh();
+
+    return () => isMounted = false;
+  
+  }, []);
+
   const handleLogout = async e => {
     try {
       const response = await axiosJWT.get('/logout');
@@ -60,6 +81,7 @@ const App = () => {
     }
 
   }
+  
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{
