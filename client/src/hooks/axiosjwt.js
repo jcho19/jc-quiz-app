@@ -36,8 +36,7 @@ const useAxiosJWT = () => {
             axiosJWT.interceptors.request.eject(requestInterceptor);
             axiosJWT.interceptors.response.eject(responseInterceptor);
         }
-    }, 
-    );
+    }, [accessToken, setAccessToken]);
     return axiosJWT;
 
 }
