@@ -48,6 +48,8 @@ app.use('/signup', require('./routes/signup'));
 
 app.use('/login', require('./routes/login'));
 
+app.use('/questions', require('./routes/question'));
+
 app.use('/refresh', require('./routes/refresh'));
 
 app.use('/logout', require('./routes/logout'));
