@@ -11,7 +11,7 @@ const handleRefresh = async (req, res) => {
         return res.sendStatus(403);
     }
     jwt.verify(refreshToken,
-               process.env.RERFRESH_TOKEN_SECRET,
+               process.env.REFRESH_TOKEN_SECRET,
                (err, decoded) => {
                     if (err || user.username !== decoded.username) {
                         return res.sendStatus(403);
