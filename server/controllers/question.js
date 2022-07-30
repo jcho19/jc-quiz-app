@@ -1,9 +1,8 @@
-const Question = require('../models/user');
+const Question = require('../models/question');
 
 const handleQuestion = async (req, res) => {
-    const questions = Question.aggregate([{ $sample: { size: 15 } }]);
+    const questions = await Question.aggregate([{ $sample: { size: 12 } }]);
     res.status(200).json(questions);
-
 }
 
 module.exports = { handleQuestion }
