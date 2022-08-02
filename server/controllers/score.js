@@ -16,12 +16,10 @@ const handleScore = async (req, res) => {
             if (!user) {
                 return res.sendStatus(403);
             }
-            console.log(user);
             if (typeof user.highestScore === 'undefined' || user.highestScore < req.body.score ){
                 user.highestScore = req.body.score;
                 await user.save();
                 res.status(200).json({'message': `Congrats ${user.username}! Your new high score is ${user.highestScore}/12!`})
-
             }
             else {
                 res.status(200).json({'message': `Hey ${user.username}, you got a ${req.body.score}. Your high score is still ${user.highestScore}/12.`})
