@@ -33,7 +33,7 @@ const theme = createTheme({
   
         },
         '@media (max-width: 700px)' : {
-          fontSize: 16
+          fontSize: 15
   
         },
       },
@@ -111,7 +111,6 @@ const Signup = () => {
 
   },[password])
 
-  
   return (
     <>
       {userCreated
@@ -124,10 +123,10 @@ const Signup = () => {
               mt: 8,
        
             }}>
-              <Typography color='primary.main' variant='h4'>
+              <Typography color='primary.main' variant='h4' align='center'>
                 You have succesfully signed up!
               </Typography>
-              <Link component={RouterLink} to='/login' variant='h5'>
+              <Link component={RouterLink} to='/login' variant='h5' align='center'>
                 Let's login now
               </Link>
 
