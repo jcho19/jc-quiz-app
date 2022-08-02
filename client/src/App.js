@@ -12,10 +12,11 @@ const theme = createTheme({
     h1: {
       fontSize: 48,
       color: '#0B0B45',
+      textAlign: 'center',
       '@media (max-width: 900px)' : {
-        fontSize: 38
+        fontSize: 36
       },
-      '@media (max-width: 700px)' : {
+      '@media (max-width: 480px)' : {
         fontSize: 22
       },        
     },
@@ -27,15 +28,15 @@ const theme = createTheme({
           backgroundColor: '#0B0B45',
           color: '#63b5cf',
           marginTop: 35,
-          width: 391,
+          width: 390,
           fontSize: 27,
           '@media (max-width: 900px)' : {
             fontSize: 21,
-            width: 310
+            width: 295
           },
-          '@media (max-width: 700px)' : {
+          '@media (max-width: 480px)' : {
             fontSize: 12,
-            width: 179
+            width: 178
           },
         }
       }
