@@ -25,7 +25,7 @@ const theme = createTheme({
         marginTop: 2,
         fontSize: 26
       },
-      '@media (max-width: 700px)' : {
+      '@media (max-width: 480px)' : {
         marginTop: 1,
         fontSize: 19
       },        
@@ -39,7 +39,7 @@ const theme = createTheme({
         fontSize: 19,
         marginTop: 6
       },
-      '@media (max-width: 700px)' : {
+      '@media (max-width: 480px)' : {
         fontSize: 13,
         marginTop: 4
       }, 
@@ -66,7 +66,7 @@ const theme = createTheme({
             width: 245,
             marginTop: 22
           },
-          '@media (max-width: 700px)' : {
+          '@media (max-width: 480px)' : {
             fontSize: 12,
             width: 176,
             marginTop: 16
