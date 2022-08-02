@@ -50,6 +50,8 @@ app.use('/login', require('./routes/login'));
 
 app.use('/questions', require('./routes/question'));
 
+app.use('/score', require('./routes/score'));
+
 app.use('/refresh', require('./routes/refresh'));
 
 app.use('/logout', require('./routes/logout'));
