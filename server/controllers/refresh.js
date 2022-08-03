@@ -10,6 +10,7 @@ const handleRefresh = async (req, res) => {
     if(!user) {
         return res.sendStatus(403);
     }
+    // verify refresh token from request and if the token is valid, send new access token
     jwt.verify(refreshToken,
                process.env.REFRESH_TOKEN_SECRET,
                (err, decoded) => {

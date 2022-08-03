@@ -1,5 +1,7 @@
 const User = require('../models/user');
 
+// if the refresh token from request is found in a user from db,
+// erase the user's refresh token and clear the refreshToken cookie
 const handleLogout = async (req, res) => {
     const refreshToken = req.cookies.refreshToken
     if(!refreshToken) {

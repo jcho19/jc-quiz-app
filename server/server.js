@@ -18,7 +18,7 @@ const dbConnect = async () => {
 
 }
 
-dbConnect()
+dbConnect() // connect to MongoDB 
 
 app.use((req, res, next) => {
   if(allowList.includes(req.headers.origin)) {
@@ -38,11 +38,11 @@ const corsOptionsDelegate = (req, callback) => {
   callback(null, corsOptions) 
 }
 
-app.use(cors(corsOptionsDelegate));
+app.use(cors(corsOptionsDelegate)); // enable requests from client
 
 app.use(express.json());
 
-app.use(cookieParser());
+app.use(cookieParser()); 
 
 app.use('/signup', require('./routes/signup'));
 
@@ -56,6 +56,7 @@ app.use('/refresh', require('./routes/refresh'));
 
 app.use('/logout', require('./routes/logout'));
 
+// error handling
 app.use((err, req, res, next) => {
   res.status(500).send(err.message);
 })

@@ -2,6 +2,8 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+// if the username and password from request are found in a user from db,
+// send an access token and refresh token (save refresh token)
 const handleLogin = async (req, res) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username }).exec();
@@ -16,7 +18,7 @@ const handleLogin = async (req, res) => {
     const refreshToken = jwt.sign({ username }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1d' });
     user.refreshToken = refreshToken;
     await user.save();
-    res.cookie('refreshToken', refreshToken, {httpOnly: true, maxAge: 60000 * 60 * 24, secure: true, sameSite: 'None' });
+    res.cookie('refreshToken', refreshToken, {httpOnly: true, maxAge: 60000 * 60 * 24, secure: true, sameSite: 'None' }); // send refreshToken (expires in one day) in HttpOnly cookie
     res.status(201).json( { accessToken } );
 }
 

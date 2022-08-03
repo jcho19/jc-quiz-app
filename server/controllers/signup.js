@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 
+// if the username from request is not found in any user from db, create new user
 const handleSignup = async(req, res) => {
     const { username, password } = req.body;
     const saltRounds = 10;
