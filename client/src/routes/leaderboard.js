@@ -76,7 +76,9 @@ function Leaderboard() {
     function createData(ranking, username, score) {
         return { ranking, username, score }
     }
-    // retrieve top 5 scoring users from server and set users to them
+    
+    // attempt to retrieve top 5 users with highest scores from
+    // server and set users to them
     useEffect(() => {
         let isMounted = true;
         const getUsers = async () => {
@@ -96,6 +98,8 @@ function Leaderboard() {
         return () => isMounted = false;
     }, []);
 
+    // set rows of leaderboard table once users is equal to the
+    // top 5 users with highest scores (retrieved from server)
     useEffect(() => {
         if(users.length){
             let tempRows = [];
