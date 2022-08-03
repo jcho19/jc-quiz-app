@@ -52,6 +52,8 @@ app.use('/questions', require('./routes/question'));
 
 app.use('/score', require('./routes/score'));
 
+app.use('/rankings', require('./routes/rankings'));
+
 app.use('/refresh', require('./routes/refresh'));
 
 app.use('/logout', require('./routes/logout'));
