@@ -11,7 +11,6 @@ import Leaderboard from './routes/leaderboard';
 import Login from './routes/login';
 import Signup from './routes/signup';
 import { TokenProvider } from './context/tokencontext';
-import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
