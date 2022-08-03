@@ -80,13 +80,11 @@ const Signup = () => {
     try{
       setIsLoading(true);
       const response = await instance.post('/signup', { username, password });
-      console.log(response);
       setUserCreated(true);
       setUsername('');
       setPassword('');
 
     } catch(err) {
-      console.log(err);
       if (err.response.status === 500) {
         alert('Internal server error');
       }
@@ -109,9 +107,7 @@ const Signup = () => {
 
   // check if password inputted meets requirements
   useEffect(() => {
-    
     setValidPassword(PASSWORD_REGEX.test(password));
-
   },[password])
 
   return (
