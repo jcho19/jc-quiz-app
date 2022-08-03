@@ -124,10 +124,10 @@ const Login = () => {
               alignItems: 'center',
               mt: 8,                          
             }}>
-              <Typography color='primary.main' variant='h4'>
+              <Typography color='primary.main' variant='h4' align='center'>
                 You're logged in!
               </Typography>
-              <Link component={RouterLink} to='/' variant='h5'>
+              <Link component={RouterLink} to='/' variant='h5' align='center'>
                 Let's go back to the home page
               </Link>
             </Box>
