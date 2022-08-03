@@ -9,6 +9,7 @@ import {
   Box,
   Typography,
   Container,
+  CircularProgress
 } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
@@ -61,6 +62,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [validUsername, setValidUsername] = useState(false); // whether username meets requirements
   const [validPassword, setValidPassword] = useState(false); // whether password meets requirements
+  const [isLoading, setIsLoading] = useState(false);
   const [userCreated, setUserCreated] = useState(false); // whether sign up has succeeded (user has been created)
   const [userTaken, setUserTaken] = useState(''); // whether username is already taken
   const pwdErrorMsg = 'Invalid password. Make sure the password is at least 8 characters including a lowercase letter and a number.' 
@@ -76,6 +78,7 @@ const Signup = () => {
     }
     
     try{
+      setIsLoading(true);
       const response = await instance.post('/signup', { username, password });
       console.log(response);
       setUserCreated(true);
@@ -92,9 +95,9 @@ const Signup = () => {
       }
       else {
         alert('Sign up has failed')
-      }
-      
+      }      
     }
+    setIsLoading(false);
   }
 
   // check if username inputted meets requirements
@@ -113,93 +116,103 @@ const Signup = () => {
 
   return (
     <>
-      {userCreated
-        ? (<ThemeProvider theme={theme}>
-            <Box sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              mt: 8,
-       
-            }}>
-              <Typography color='primary.main' variant='h4' align='center'>
-                You have succesfully signed up!
-              </Typography>
-              <Link component={RouterLink} to='/login' variant='h5' align='center'>
-                Let's login now
-              </Link>
-
-            </Box>
-
-        </ThemeProvider>)
-        : (<ThemeProvider theme={theme}>
-            <Container component='main' maxWidth='xs'>
-              <CssBaseline />
-              <Box
-                sx={{
-                  marginTop: 8,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <Avatar sx={{ m: 1, bgcolor: 'primary.main', color: 'secondary.main' }}>
-                </Avatar>
-                <Typography color='primary.main' component='h1' variant='h5'>
-                  Sign up
+      {isLoading
+        ? (<Box sx={{
+            display:'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            mt: 15,
+          }}>
+            <CircularProgress />
+          </Box>
+          )
+        : userCreated
+          ? (<ThemeProvider theme={theme}>
+              <Box sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                mt: 8,
+        
+              }}>
+                <Typography color='primary.main' variant='h4' align='center'>
+                  You have succesfully signed up!
                 </Typography>
-                <Box component='form' noValidate sx={{ mt: 3 }} onSubmit={handleSubmit}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <TextField
-                        name='username'
-                        required
-                        fullWidth
-                        id='username'
-                        label='Username'
-                        autoComplete='off'
-                        onChange={(e) => setUsername(e.target.value)}
-                        error={username !== '' && !validUsername}
-                        helperText={username !== '' && !validUsername ? unErrorMsg: ''}
-                        autoFocus
-                      />
-                    {userTaken ? <Typography color='red' variant='body2'>This username is already taken</Typography>: null}
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        required
-                        fullWidth
-                        name='password'
-                        label='Password'
-                        type='password'
-                        id='password'
-                        autoComplete='new-password'
-                        onChange={(e) => setPassword(e.target.value)}
-                        error={password !== '' && !validPassword}
-                        helperText={password !== '' && !validPassword ? pwdErrorMsg: ''}
-                      />
-                    </Grid>
-                  </Grid>
-                  <Button
-                    type='submit'
-                    fullWidth
-                    variant='contained'
-                    sx={{ mt: 3, mb: 2, color: 'secondary.main' }}
-                  >
-                    Sign Up
-                  </Button>
-                  <Grid container>
-                    <Grid item>
-                      <Link component={RouterLink} to='/login' variant='body2'>
-                        Already have an account? Login
-                      </Link>
-                    </Grid>
-                  </Grid>
-                </Box>
+                <Link component={RouterLink} to='/login' variant='h5' align='center'>
+                  Let's login now
+                </Link>
+
               </Box>
-            </Container>
+
           </ThemeProvider>)
+          : (<ThemeProvider theme={theme}>
+              <Container component='main' maxWidth='xs'>
+                <CssBaseline />
+                <Box
+                  sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Avatar sx={{ m: 1, bgcolor: 'primary.main', color: 'secondary.main' }}>
+                  </Avatar>
+                  <Typography color='primary.main' component='h1' variant='h5'>
+                    Sign up
+                  </Typography>
+                  <Box component='form' noValidate sx={{ mt: 3 }} onSubmit={handleSubmit}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <TextField
+                          name='username'
+                          required
+                          fullWidth
+                          id='username'
+                          label='Username'
+                          autoComplete='off'
+                          onChange={(e) => setUsername(e.target.value)}
+                          error={username !== '' && !validUsername}
+                          helperText={username !== '' && !validUsername ? unErrorMsg: ''}
+                          autoFocus
+                        />
+                      {userTaken ? <Typography color='red' variant='body2'>This username is already taken</Typography>: null}
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          required
+                          fullWidth
+                          name='password'
+                          label='Password'
+                          type='password'
+                          id='password'
+                          autoComplete='new-password'
+                          onChange={(e) => setPassword(e.target.value)}
+                          error={password !== '' && !validPassword}
+                          helperText={password !== '' && !validPassword ? pwdErrorMsg: ''}
+                        />
+                      </Grid>
+                    </Grid>
+                    <Button
+                      type='submit'
+                      fullWidth
+                      variant='contained'
+                      sx={{ mt: 3, mb: 2, color: 'secondary.main' }}
+                    >
+                      Sign Up
+                    </Button>
+                    <Grid container>
+                      <Grid item>
+                        <Link component={RouterLink} to='/login' variant='body2'>
+                          Already have an account? Login
+                        </Link>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                </Box>
+              </Container>
+            </ThemeProvider>)
       }
     </>
 
