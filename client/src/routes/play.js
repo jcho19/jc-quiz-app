@@ -116,10 +116,10 @@ const Play = () => {
         try {
             const response = await instance.get('/questions');
             setQuestions(response.data);
-            setIsLoading(false);
         } catch (err) {
             alert('Internal Server Error');
         }
+        setIsLoading(false);
     }
     refresh();
     getQuestions();
@@ -140,17 +140,17 @@ const Play = () => {
       setIsLoading(true);
       const response = await axiosJWT.put('/score', { score: finalScore });
       setResultText(response.data.message);
-      setIsLoading(false);
     } catch (err) {
       setResultText(`Hey guest user, your score is ${finalScore}/12`);
     }
+    setIsLoading(false);
   }
 
   const handleClick = e => {
     // quiz has a total of 12 questions
     if (questionIndex === 11) {
       let finalScore = numCorrect;
-      if (e.target.innerText.toLowerCase() === questions[questionIndex].correctAnswer.toLowerCase()) {
+      if (e.target.innerText.textContent === questions[questionIndex].correctAnswer) {
         finalScore += 1; // useState hook is asynchronous
       }
       // if user is logged in, send quiz score to server for server 
@@ -163,7 +163,7 @@ const Play = () => {
       }
     }
     else {
-      if (e.target.innerText.toLowerCase() === questions[questionIndex].correctAnswer.toLowerCase()) {
+      if (e.target.textContent === questions[questionIndex].correctAnswer) {
         setNumCorrect(numCorrect + 1);
       }
       // move on to next question
@@ -213,7 +213,7 @@ const Play = () => {
                         {questions[questionIndex].question}
                       </Typography>
                     {choices.map((choice) => (
-                      <Button key={questions[questionIndex] + choice}onClick={handleClick}>{choice}</Button>
+                      <Button key={questions[questionIndex] + choice} onClick={handleClick}>{choice}</Button>
                     ))}
                   </Box>
               </ThemeProvider>) : (null)
