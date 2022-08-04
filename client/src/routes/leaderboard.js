@@ -71,7 +71,7 @@ const instance = axios.create({ baseURL: 'https://japanese-culture-quiz.herokuap
 function Leaderboard() {
     const [users, setUsers] = useState([]); // top 5 users with highest scores
     const [rows, setRows] = useState([]); // rows of leaderboard table
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     function createData(ranking, username, score) {
         return { ranking, username, score }
@@ -83,7 +83,6 @@ function Leaderboard() {
         let isMounted = true;
         const getUsers = async () => {
             try {
-                setIsLoading(true);
                 const response = await instance.get('/rankings');
                 if (isMounted) {
                     setUsers(response.data);

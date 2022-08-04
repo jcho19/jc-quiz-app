@@ -62,14 +62,13 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState(''); // message to show user if login wasn't successful
   const { accessToken, setAccessToken } = useContext(TokenContext);
-  const [isLoading , setIsLoading] = useState(false);
+  const [isLoading , setIsLoading] = useState(true);
   
   // persistent login 
   useEffect(() => {
     let isMounted = true;
     const refresh = async () => {
       try {
-        setIsLoading(true);
         const response = await instance.get('/refresh'); // gets access token if refresh token hasn't expired
         if (isMounted) {
           setAccessToken(response.data.accessToken);
