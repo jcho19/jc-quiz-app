@@ -6,9 +6,10 @@ import {
   Button,
   Box,
   Typography,
-  CircularProgress
+  CircularProgress,
+  createTheme,
+  ThemeProvider
   } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { TokenContext } from '../context/tokencontext';
 import axios from 'axios';
@@ -77,7 +78,7 @@ const theme = createTheme({
   }
 });
 
-const instance = axios.create({ baseURL: 'http://localhost:3001', withCredentials: true });
+const instance = axios.create({ baseURL: 'https://japanese-culture-quiz.herokuapp.com' });
 
 const Play = () => {
   const [questions, setQuestions] = useState([]); // set of quiz questions

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import { TokenContext }from '../context/tokencontext';
 
-const axiosJWT = axios.create({ baseURL: 'http://localhost:3001', withCredentials: true });
+const axiosJWT = axios.create({ baseURL: 'https://japanese-culture-quiz.herokuapp.com' });
 
 // custom hook to return an axios instance with interceptors added for jwt handling
 const useAxiosJWT = () => {

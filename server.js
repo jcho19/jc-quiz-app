@@ -3,6 +3,8 @@ const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
+const path = require('path');
+const absPath = path.resolve();
 const PORT = process.env.PORT || 3001
 const allowList = ['http://localhost:3000'];
 require('dotenv').config();
@@ -13,9 +15,8 @@ const dbConnect = async () => {
     useUnifiedTopology: true});
 
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
-
 }
 
 dbConnect() // connect to MongoDB 
@@ -58,6 +59,15 @@ app.use('/refresh', require('./routes/refresh'));
 
 app.use('/logout', require('./routes/logout'));
 
+// for deploying to heroku
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(absPath, '/client/build')));
+
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(absPath, 'client', 'build', 'index.html'))
+  );
+} 
+
 // error handling
 app.use((err, req, res, next) => {
   res.status(500).send(err.message);
@@ -65,7 +75,7 @@ app.use((err, req, res, next) => {
 
 mongoose.connection.once('open', () => {
   app.listen(PORT, () => {
-    console.log(`Server listening on port ${port}`)
+    console.log(`Server listening on port ${PORT}`)
   });
 
 });

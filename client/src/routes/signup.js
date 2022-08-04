@@ -9,13 +9,14 @@ import {
   Box,
   Typography,
   Container,
-  CircularProgress
+  CircularProgress,
+  createTheme,
+  ThemeProvider
 } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
 import axios from 'axios';
 
-const instance = axios.create({ baseURL: 'http://localhost:3001' });
+const instance = axios.create({ baseURL: 'https://japanese-culture-quiz.herokuapp.com' });
 
 const theme = createTheme({
     palette: {

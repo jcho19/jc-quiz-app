@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {
     Box,
@@ -11,9 +10,10 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    Paper
+    Paper,
+    createTheme,
+    ThemeProvider
  } from '@mui/material';
- import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
     typography : {
@@ -66,7 +66,7 @@ const theme = createTheme({
     }
 })
 
-const instance = axios.create({ baseURL: 'http://localhost:3001' });
+const instance = axios.create({ baseURL: 'https://japanese-culture-quiz.herokuapp.com' });
 
 function Leaderboard() {
     const [users, setUsers] = useState([]); // top 5 users with highest scores

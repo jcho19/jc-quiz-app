@@ -1,7 +1,12 @@
 import { useState, useContext, useEffect } from 'react';
 import { TokenContext } from './context/tokencontext';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Box, Typography, Button, CircularProgress } from '@mui/material';
+import {
+  Box, 
+  Typography, 
+  Button, 
+  CircularProgress,
+  createTheme,
+  ThemeProvider } from '@mui/material';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import useAxiosJWT from './hooks/axiosjwt';
@@ -44,7 +49,7 @@ const theme = createTheme({
   }
 });
 
-const instance = axios.create({ baseURL: 'http://localhost:3001', withCredentials: true });
+const instance = axios.create({ baseURL: 'https://japanese-culture-quiz.herokuapp.com' });
 
 const App = () => {
   const { accessToken, setAccessToken } = useContext(TokenContext); // enables logout feature
