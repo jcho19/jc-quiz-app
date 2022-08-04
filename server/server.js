@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const port = 3001
+const PORT = process.env.PORT || 3001
 const allowList = ['http://localhost:3000'];
 require('dotenv').config();
 
@@ -64,7 +64,7 @@ app.use((err, req, res, next) => {
 })
 
 mongoose.connection.once('open', () => {
-  app.listen(port, () => {
+  app.listen(PORT, () => {
     console.log(`Server listening on port ${port}`)
   });
 
