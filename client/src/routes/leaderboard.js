@@ -48,6 +48,19 @@ const theme = createTheme({
                 }
             }
         },
+        MuiTableRow: {
+            styleOverrides: {
+                root: {
+                    height: 53,
+                    '@media (max-width: 900px)' : {
+                        height: 38
+                      },
+                    '@media (max-width: 480px)' : {
+                        height: 22
+                    }, 
+                },           
+            }
+        },        
         MuiTableCell: {
             styleOverrides: {
                 root: {
@@ -136,8 +149,7 @@ function Leaderboard() {
                             {rows.map((row) => (
                             <TableRow
                                 key={row.ranking}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 },
-                                      height: 60 }}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
                                 {row.ranking}
