@@ -150,7 +150,7 @@ const Play = () => {
     // quiz has a total of 12 questions
     if (questionIndex === 11) {
       let finalScore = numCorrect;
-      if (e.target.innerText.textContent === questions[questionIndex].correctAnswer) {
+      if (e.target.textContent === questions[questionIndex].correctAnswer) {
         finalScore += 1; // useState hook is asynchronous
       }
       // if user is logged in, send quiz score to server for server 
