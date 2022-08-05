@@ -1,12 +1,10 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 const absPath = path.resolve();
 const PORT = process.env.PORT || 3001
-const allowList = ['http://localhost:3000'];
 require('dotenv').config();
 
 const dbConnect = async () => {
@@ -20,26 +18,6 @@ const dbConnect = async () => {
 }
 
 dbConnect() // connect to MongoDB 
-
-app.use((req, res, next) => {
-  if(allowList.includes(req.headers.origin)) {
-    res.header('Access-Control-Allow-Credentials', true);
-  }
-  next();
-
-})
-
-const corsOptionsDelegate = (req, callback) => {
-  let corsOptions;
-  if (allowList.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { origin: true } 
-  } else {
-    corsOptions = { origin: false } 
-  }
-  callback(null, corsOptions) 
-}
-
-app.use(cors(corsOptionsDelegate)); // enable requests from client
 
 app.use(express.json());
 
