@@ -33,27 +33,27 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'monospace',
-    h4: {
+    h3: {
+      fontSize: 40,
       '@media (max-width: 900px)' : {
-        fontSize: 24
+        fontSize: 29
 
       },
       '@media (max-width: 480px)' : {
-        fontSize: 16
+        fontSize: 22
 
       },
     },
-    h5: {
+    h4: {
+      fontSize: 32,
       '@media (max-width: 900px)' : {
-        fontSize: 20
+        fontSize: 23
   
       },
       '@media (max-width: 480px)' : {
-        fontSize: 14
-  
-      }, 
-
-    },    
+        fontSize: 15
+      } 
+    }    
   },
 });
 
@@ -124,10 +124,10 @@ const Login = () => {
               alignItems: 'center',
               mt: 8,                          
             }}>
-              <Typography color='primary.main' variant='h4' align='center'>
+              <Typography color='primary.main' variant='h3' align='center'>
                 You're logged in!
               </Typography>
-              <Link component={RouterLink} to='/' variant='h5' align='center'>
+              <Link component={RouterLink} to='/' variant='h4' align='center'>
                 Let's go back to the home page
               </Link>
             </Box>

@@ -29,30 +29,28 @@ const theme = createTheme({
     },
     typography: {
       fontFamily: 'monospace',
+      h3: {
+        fontSize: 40,
+        '@media (max-width: 900px)' : {
+          fontSize: 29
+  
+        },
+        '@media (max-width: 480px)' : {
+          fontSize: 22
+  
+        },
+      },
       h4: {
+        fontSize: 32,
         '@media (max-width: 900px)' : {
-          fontSize: 24
-  
+          fontSize: 23
+    
         },
-        '@media (max-width: 700px)' : {
+        '@media (max-width: 480px)' : {
           fontSize: 15
-  
-        },
-      },
-      h5: {
-        '@media (max-width: 900px)' : {
-          fontSize: 20
-    
-        },
-        '@media (max-width: 700px)' : {
-          fontSize: 14
-    
-        }, 
-
-      },
-      
-    },
-
+        } 
+      }  
+    }
 });
 
 const USERNAME_REGEX = /^[[A-z0-9_]{0,16}$/; // username requirements 
@@ -133,10 +131,10 @@ const Signup = () => {
                 mt: 8,
         
               }}>
-                <Typography color='primary.main' variant='h4' align='center'>
+                <Typography color='primary.main' variant='h3' align='center'>
                   You have succesfully signed up!
                 </Typography>
-                <Link component={RouterLink} to='/login' variant='h5' align='center'>
+                <Link component={RouterLink} to='/login' variant='h4' align='center'>
                   Let's login now
                 </Link>
 
