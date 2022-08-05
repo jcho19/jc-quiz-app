@@ -30,26 +30,26 @@ const theme = createTheme({
     typography: {
       fontFamily: 'monospace',
       h3: {
-        fontSize: 40,
+        fontSize: 33,
         '@media (max-width: 900px)' : {
-          fontSize: 29
+          fontSize: 24
   
         },
         '@media (max-width: 480px)' : {
-          fontSize: 22
+          fontSize: 15
   
         },
       },
       h4: {
-        fontSize: 32,
+        fontSize: 29,
         '@media (max-width: 900px)' : {
-          fontSize: 23
+          fontSize: 22
     
         },
         '@media (max-width: 480px)' : {
-          fontSize: 15
+          fontSize: 14
         } 
-      }  
+      }
     }
 });
 
