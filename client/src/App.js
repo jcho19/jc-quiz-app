@@ -32,6 +32,9 @@ const theme = createTheme({
         root: {
           backgroundColor: '#0B0B45',
           color: '#63b5cf',
+          '&:hover': {
+            backgroundColor: '#0B0B45'
+          },          
           marginTop: 35,
           width: 390,
           fontSize: 27,

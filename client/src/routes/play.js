@@ -56,8 +56,7 @@ const theme = createTheme({
           color: '#63b5cf',
           borderRadius: 15,
           '&:hover': {
-              backgroundColor: '#63b5cf',
-              color: '#0B0B45',
+              backgroundColor: '#0B0B45'
           },
           marginTop: 26,
           width: 283,
