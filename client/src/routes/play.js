@@ -64,12 +64,12 @@ const theme = createTheme({
           '@media (max-width: 900px)' : {
             fontSize: 16,
             width: 245,
-            marginTop: 22
+            marginTop: 25
           },
           '@media (max-width: 480px)' : {
             fontSize: 12,
             width: 176,
-            marginTop: 16
+            marginTop: 23
           },            
         }
       }
